@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/main.css" />
+    <script src="./src/js/main.js" type="module" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo__name">Мое кино</div>
+      <div class="user__name">Андрей/Карина</div>
+      <div class="btn__header">
+        <button class="header__btn-add">Добавить фильм</button>
+        <button class="header__btn-close">выйти</button>
+      </div>
+    </header>
+
+    <div class="btn__films">
+      <button>Все фильмы</button>
+      <button>Просмотренные</button>
+      <button>Непросмотреные</button>
+    </div>
+    <h1 class="title__films">Cписок фильмов</h1>
+    <div class="film__container">
+      <div class="film__list">
+        <ul class="movie-list"></ul>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Название окна</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-text">Напишите название фильма</p>
+          <div class="modal-input">
+            <input
+              class="input__film"
+              type="text"
+              placeholder="Введите значение..."
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="movie__btn modal-agree">Добавить</button>
+          <button class="movie__btn modal-cancel">Отмена</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
