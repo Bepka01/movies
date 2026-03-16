@@ -1,18 +1,11 @@
 import { printFilm } from "./printFilm.js";
-import { toLoginWindow } from "./utils/contants.js";
 import { checkAuthorization, exitToAuth } from "./auth.js";
-import {
-  closeModal,
-  closeModalBtn,
-  modal,
-  showModalWindow,
-  btnCancel,
-} from "./modal.js";
-import { rednerSavedFilm, deleteFilm } from "./saveFilm.js";
-
-document.addEventListener("DOMContentLoaded", rednerSavedFilm);
+import { closeModal, closeModalBtn, btnCancel } from "./modal.js";
+import { rednerSavedFilms } from "./saveFilm.js";
+import { modalWindow } from "./utils/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  rednerSavedFilms();
   if (!checkAuthorization()) return;
 
   const btnAdd = document.querySelector(".header__btn-add");
@@ -23,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   btnClose.addEventListener("click", exitToAuth);
 
   btnAdd.addEventListener("click", () => {
-    document.querySelector("#modalOverlay").classList.add("active");
+    modalWindow.classList.add("active");
   });
 
   btnCancel.addEventListener("click", closeModal);
@@ -32,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addedFilm.addEventListener("keydown", (e) => {
     if (e.key === "Enter") printFilm();
     if (e.key === "Escape") {
-      document.querySelector("#modalOverlay")?.classList.remove("active");
+      modalWindow.classList.remove("active");
     }
   });
 });

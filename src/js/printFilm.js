@@ -1,6 +1,7 @@
-import { closeModal } from "./modal";
+import { closeModal } from "./modal.js";
 import { deleteFilm } from "./saveFilm.js";
 import { saveFilm } from "./saveFilm.js";
+import { v4 as uuidv4 } from "uuid";
 
 export function printFilm(filmInput = null) {
   const ulMovieList = document.querySelector(".movie-list");
@@ -32,7 +33,7 @@ export function printFilm(filmInput = null) {
     deleteFilm(film);
   });
 
-  const checkboxId = `movie${Date.now()}`;
+  const checkboxId = `movie-${uuidv4()}`;
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.classList.add("movie-checkbox");
@@ -49,7 +50,6 @@ export function printFilm(filmInput = null) {
   liFilm.appendChild(btnDelete);
 
   ulMovieList.prepend(liFilm);
-  console.log(liFilm);
   addedFilm.value = "";
 
   closeModal();

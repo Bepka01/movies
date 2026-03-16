@@ -2,12 +2,8 @@ function toLoginWindow() {
   window.location.href = "auth.html";
 }
 
-function toMainWindow() {
-  window.location.href = "index.html";
-}
-
 function redirectToMainWindow() {
-  window.location.href = "index.html";
+  window.location.href = "/index.html";
 }
 
 function removeUserName() {
@@ -21,8 +17,10 @@ function setUserName(username) {
 function getUserName() {
   return localStorage.getItem("userName");
 }
+
+const modalWindow = document.querySelector("#modalOverlay");
 export {
-  toMainWindow,
+  modalWindow,
   toLoginWindow,
   redirectToMainWindow,
   setUserName,

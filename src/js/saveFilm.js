@@ -1,12 +1,12 @@
-import { printFilm } from "./printFilm";
+import { printFilm } from "./printFilm.js";
 
 function saveFilm(film) {
-  let movies = JSON.parse(localStorage.getItem("movies")) || [];
+  const movies = JSON.parse(localStorage.getItem("movies")) || [];
   movies.push(film);
-  localStorage.ssetItem("movies", JSON.stringify(movies));
+  localStorage.setItem("movies", JSON.stringify(movies));
 }
 
-function rednerSavedFilm() {
+function rednerSavedFilms() {
   let movies = JSON.parse(localStorage.getItem("movies")) || [];
   movies.forEach((film) => {
     printFilm(film);
@@ -18,4 +18,4 @@ function deleteFilm(filmName) {
   localStorage.setItem("movies", JSON.stringify(movies));
 }
 
-export { saveFilm, rednerSavedFilm, deleteFilm };
+export { saveFilm, rednerSavedFilms, deleteFilm };

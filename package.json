@@ -10,12 +10,16 @@
     "deploy": "gh-pages -d dist",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "prettier --check ."
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix"
   },
   "devDependencies": {
     "eslint": "^10.0.3",
     "gh-pages": "^6.3.0",
     "prettier": "3.8.1",
     "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "uuid": "^13.0.0"
   }
 }

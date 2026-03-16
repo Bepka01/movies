@@ -21,7 +21,7 @@ body {
   flex-direction: column;
   padding: 20px;
   font-size: 22px;
-  font-family: var(--font-famaly);
+  font-family: var(--font-family);
   font-weight: 600;
   box-shadow: 1px 1px 5px gray;
   margin: 10px;

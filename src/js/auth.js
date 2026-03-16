@@ -1,8 +1,4 @@
-import {
-  toLoginWindow,
-  getUserName,
-  removeUserName,
-} from "./utils/contants.js";
+import { toLoginWindow, getUserName, removeUserName } from "./utils/utils.js";
 
 export function checkAuthorization() {
   const userName = getUserName();

@@ -2,7 +2,7 @@ import {
   redirectToMainWindow,
   setUserName,
   getUserName,
-} from "../utils/contants.js";
+} from "../utils/utils.js";
 
 const inputLogin = document.querySelector(".authorization__login");
 const inputPassword = document.querySelector(".authorization__password");
