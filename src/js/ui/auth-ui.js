@@ -1,27 +1,26 @@
-import { redirectToMain } from "../auth.js";
+import {
+  redirectToMainWindow,
+  setUserName,
+  getUserName,
+} from "../utils/contants.js";
 
 const inputLogin = document.querySelector(".authorization__login");
 const inputPassword = document.querySelector(".authorization__password");
 const authBtn = document.querySelector(".btn__auth");
 
-function validFormInput() {
-  if (inputLogin.value.trim() === "" || inputPassword.value.trim() === "") {
-    alert("Заполните форму");
-    return false;
+authBtn.addEventListener("click", () => {
+  if (!inputLogin.value.trim() || inputPassword.value.length < 6) {
+    alert("Заполните форму корректно");
+    return;
   }
-  if (inputPassword.value.length < 6) {
-    alert("Пароль должен содержать минимум 6 символов");
-  } else {
-    alert(`${inputLogin.value}, Добро пожаловать!`);
+  setUserName(inputLogin.value);
+  inputLogin.value = "";
+  inputPassword.value = "";
 
-    localStorage.setItem("userName", inputLogin.value);
-
-    inputLogin.value = "";
-    inputPassword.value = "";
-    window.location.href = "index.html";
+  redirectToMainWindow();
+});
+document.addEventListener("DOMContentLoaded", () => {
+  if (getUserName()) {
+    redirectToMainWindow();
   }
-}
-
-authBtn.addEventListener("click", validFormInput);
-
-document.addEventListener("DOMContentLoaded", redirectToMain);
+});

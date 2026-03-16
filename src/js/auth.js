@@ -1,14 +1,24 @@
+import {
+  toLoginWindow,
+  getUserName,
+  removeUserName,
+} from "./utils/contants.js";
+
 export function checkAuthorization() {
-  const currUser = localStorage.getItem("userName");
-  if (!currUser) {
-    window.location.href = "auth.html";
+  const userName = getUserName();
+  if (!userName) {
+    if (
+      window.location.pathname.includes("index.html") ||
+      window.location.pathname === "/"
+    ) {
+      toLoginWindow();
+    }
     return false;
   }
+  return true;
 }
 
-export function redirectToMain() {
-  const currUser = localStorage.getItem("userName");
-  if (currUser) {
-    window.location.href = "index.html";
-  }
+export function exitToAuth() {
+  removeUserName();
+  toLoginWindow();
 }

@@ -1,78 +1,38 @@
-import { modal, closeModalBtn, closeModal, showModalWindow } from "./modal.js";
 import { printFilm } from "./printFilm.js";
-import { checkAuthorization } from "./auth.js";
-const btnAdd = document.querySelector(".header__btn-add");
-btnAdd.addEventListener("click", showModalWindow);
+import { toLoginWindow } from "./utils/contants.js";
+import { checkAuthorization, exitToAuth } from "./auth.js";
+import {
+  closeModal,
+  closeModalBtn,
+  modal,
+  showModalWindow,
+  btnCancel,
+} from "./modal.js";
+import { rednerSavedFilm, deleteFilm } from "./saveFilm.js";
 
-const headBtn = document.querySelector(".header__btn-add");
-const ulMovieList = document.querySelector(".movie-list");
-const btnClose = document.querySelector(".header__btn-close");
-const modalBtnAgree = document.querySelector(".modal-agree");
-const addedFilm = document.querySelector(".input__film");
+document.addEventListener("DOMContentLoaded", rednerSavedFilm);
 
-function addFilms() {
-  const liFilm = document.createElement("li");
-  liFilm.classList.add("movie-item");
-  const nameFilm = document.createElement("span");
-  nameFilm.classList.add("movie-title");
-  nameFilm.textContent = addedFilm.value;
-  if (nameFilm.textContent === "") {
-    alert("Напишите название");
-    return;
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  if (!checkAuthorization()) return;
 
-  const btnDelete = document.createElement("button");
-  btnDelete.classList.add("movie__btn");
-  btnDelete.textContent = "Удалить фильм";
+  const btnAdd = document.querySelector(".header__btn-add");
+  const btnClose = document.querySelector(".header__btn-close");
+  const btnAddFilm = document.querySelector(".modal-agree");
+  const addedFilm = document.querySelector(".input__film");
 
-  btnDelete.addEventListener("click", function deleteFilm() {
-    liFilm.remove();
+  btnClose.addEventListener("click", exitToAuth);
+
+  btnAdd.addEventListener("click", () => {
+    document.querySelector("#modalOverlay").classList.add("active");
   });
 
-  const checkboxId = `movie${Date.now()}`;
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.classList.add("movie-checkbox");
-  checkbox.id = checkboxId;
-
-  const label = document.createElement("label");
-  label.classList.add("movie-label");
-  label.textContent = "Просмотрено";
-  label.htmlFor = checkboxId;
-
-  liFilm.appendChild(nameFilm);
-  liFilm.appendChild(checkbox);
-  liFilm.appendChild(label);
-
-  liFilm.appendChild(btnDelete);
-  ulMovieList.prepend(liFilm);
-  addedFilm.value = "";
-}
-
-headBtn.addEventListener("click", showModalWindow);
-
-modalBtnAgree.addEventListener("click", addFilms);
-
-addedFilm.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    addFilms();
-  }
+  btnCancel.addEventListener("click", closeModal);
+  closeModalBtn.addEventListener("click", closeModal);
+  btnAddFilm.addEventListener("click", () => printFilm(null, false));
+  addedFilm.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") printFilm();
+    if (e.key === "Escape") {
+      document.querySelector("#modalOverlay")?.classList.remove("active");
+    }
+  });
 });
-
-addedFilm.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    closeModalWindow();
-  }
-});
-
-function backToLogin() {
-  const questionExit = confirm("Вы уверены, что хотите выйти?");
-  if (questionExit === true) {
-    localStorage.removeItem("userName");
-    window.location.href = "auth.html";
-  }
-}
-
-btnClose.addEventListener("click", backToLogin);
-
-document.addEventListener("DOMContentLoaded", checkAuthorization);

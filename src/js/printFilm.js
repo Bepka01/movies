@@ -1,12 +1,56 @@
-import { btnAddFilm, closeModal, modalInput } from "./modal.js";
-const listFilm = document.querySelector(".movie-list");
+import { closeModal } from "./modal";
+import { deleteFilm } from "./saveFilm.js";
+import { saveFilm } from "./saveFilm.js";
 
-console.log(btnAddFilm);
-function printFilm() {
-  const film = document.createElement("li");
-  film.textContent = modalInput.value;
-  listFilm.appendChild(film);
+export function printFilm(filmInput = null) {
+  const ulMovieList = document.querySelector(".movie-list");
+  const addedFilm = document.querySelector(".input__film");
+
+  const film = filmInput || addedFilm.value;
+
+  if (!film.trim()) {
+    alert("Напишите название фильма");
+    return;
+  }
+
+  if (!filmInput) {
+    saveFilm(film);
+  }
+
+  const liFilm = document.createElement("li");
+  liFilm.classList.add("movie-item");
+
+  const nameFilm = document.createElement("span");
+  nameFilm.classList.add("movie-title");
+  nameFilm.textContent = film;
+
+  const btnDelete = document.createElement("button");
+  btnDelete.classList.add("movie__btn");
+  btnDelete.textContent = "Удалить фильм";
+  btnDelete.addEventListener("click", () => {
+    liFilm.remove();
+    deleteFilm(film);
+  });
+
+  const checkboxId = `movie${Date.now()}`;
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("movie-checkbox");
+  checkbox.id = checkboxId;
+
+  const label = document.createElement("label");
+  label.classList.add("movie-label");
+  label.textContent = "Просмотрено";
+  label.htmlFor = checkboxId;
+
+  liFilm.appendChild(nameFilm);
+  liFilm.appendChild(checkbox);
+  liFilm.appendChild(label);
+  liFilm.appendChild(btnDelete);
+
+  ulMovieList.prepend(liFilm);
+  console.log(liFilm);
+  addedFilm.value = "";
+
   closeModal();
 }
-btnAddFilm.addEventListener("click", printFilm);
-export { printFilm };
