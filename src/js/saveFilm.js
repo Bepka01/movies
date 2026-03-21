@@ -7,7 +7,7 @@ function saveFilm(film) {
 }
 
 function rednerSavedFilms() {
-  let movies = JSON.parse(localStorage.getItem("movies")) || [];
+  const movies = JSON.parse(localStorage.getItem("movies")) || [];
   movies.forEach((film) => {
     printFilm(film);
   });

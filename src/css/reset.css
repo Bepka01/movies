@@ -1,3 +1,5 @@
+/*
+
 * {
   padding: 0px;
   margin: 0px;
@@ -80,7 +82,7 @@ input::-ms-clear {
 }
 
 button,
-input[type="submit"] {
+input[type='submit'] {
   display: inline-block;
   box-shadow: none;
   background-color: transparent;
@@ -108,6 +110,6 @@ legend {
   display: block;
 }
 
-input[type="file"] {
+input[type='file'] {
   max-width: 100%;
 }
