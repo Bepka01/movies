@@ -1,4 +1,5 @@
-@import '../scss/variables.scss';
+@use './reset';
+@use './variables' as *;
 @mixin atSmall {
   @media (max-width: 768px) {
     @content;

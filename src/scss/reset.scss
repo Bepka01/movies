@@ -1,8 +1,6 @@
-/*
-
 * {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   border: none;
 }
 
@@ -11,8 +9,6 @@
 *::after {
   box-sizing: border-box;
 }
-
-/* Links */
 
 a,
 a:link,
@@ -23,8 +19,6 @@ a:visited {
 a:hover {
   text-decoration: none;
 }
-
-/* Common */
 
 aside,
 nav,
@@ -65,8 +59,6 @@ address {
   font-style: normal;
 }
 
-/* Form */
-
 input,
 textarea,
 button,
@@ -85,7 +77,6 @@ button,
 input[type='submit'] {
   display: inline-block;
   box-shadow: none;
-  background-color: transparent;
   background: none;
   cursor: pointer;
 }

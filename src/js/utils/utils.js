@@ -1,5 +1,5 @@
 function toLoginWindow() {
-  window.location.href = "auth.html";
+  window.location.href = "/auth.html";
 }
 
 function redirectToMainWindow() {

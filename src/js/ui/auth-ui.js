@@ -1,3 +1,4 @@
+import '../../scss/auth.scss';
 import {
   redirectToMainWindow,
   setUserName,

@@ -1,3 +1,4 @@
+import '../scss/main.scss';
 import { printFilm } from './printFilm.js';
 import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
