@@ -1,16 +1,19 @@
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
+const rootDir = dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig({
-  root: resolve(__dirname, 'src/pages'),
-  publicDir: resolve(__dirname, 'public'),
+  root: resolve(rootDir, 'src/pages'),
+  publicDir: resolve(rootDir, 'public'),
   build: {
-    outDir: resolve(__dirname, 'dist'),
+    outDir: resolve(rootDir, 'dist'),
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'src/pages/index.html'),
-        auth: resolve(__dirname, 'src/pages/auth.html'),
+        index: resolve(rootDir, 'src/pages/index.html'),
+        auth: resolve(rootDir, 'src/pages/auth.html'),
       },
     },
   },
