@@ -1,37 +1,17 @@
 @use './reset';
 @use './variables' as *;
-@mixin atSmall {
-  @media (max-width: 768px) {
-    @content;
-  }
-}
+@use './mixins.scss' as *;
 
 body {
   background-color: $color-gray;
 }
 
 .authorization {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center();
   height: 100vh;
 
   .card__authorization {
-    max-width: 600px;
-    width: 100%;
-    height: 400px;
-    background-color: $color-white;
-    color: $text-color;
-    display: flex;
-    border-radius: 12px;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    font-size: 22px;
-    font-family: $font-family;
-    font-weight: 600;
-    box-shadow: 1px 1px 5px gray;
-    margin: 10px;
+    @include auth-card();
 
     .authorization__title {
       margin-bottom: 60px;
@@ -42,10 +22,7 @@ body {
     }
 
     .autorization__users {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      @include flex-center(column);
       width: 100%;
 
       .authorization__inputs {
@@ -63,32 +40,72 @@ body {
 
         .authorization__login,
         .authorization__password {
-          border: 1px solid black;
-          max-width: 280px;
-          width: 100%;
-          border-radius: 12px;
-          padding: 5px;
+          @include auth-input();
         }
       }
     }
 
     .authorization__btn {
       width: 100%;
-      display: flex;
-      justify-content: center;
+      @include flex-center();
 
       .btn__auth {
-        max-width: 280px;
-        width: 100%;
-        height: 40px;
-        padding: 5px;
-        border-radius: 12px;
-        background-color: $color-green;
+        @include auth-button();
 
         @include atSmall {
           font-size: 16px;
         }
       }
+    }
+  }
+}
+
+// Дополнительные медиа-запросы
+@include atSmall {
+  .card__authorization {
+    height: 450px;
+    padding: 15px;
+    margin: 5px;
+
+    .authorization__title {
+      margin-bottom: 40px;
+    }
+
+    .authorization__inputs {
+      margin-bottom: 25px;
+
+      .authorization__login,
+      .authorization__password {
+        max-width: 100%;
+        padding: 8px;
+      }
+    }
+  }
+}
+
+@include atExtraSmall {
+  .card__authorization {
+    height: 500px;
+    max-width: 95%;
+    padding: 20px;
+    margin: 10px;
+
+    .authorization__title {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .authorization__inputs {
+      .authorization__login,
+      .authorization__password {
+        padding: 12px;
+        font-size: 16px;
+      }
+    }
+
+    .btn__auth {
+      height: 50px;
+      font-size: 18px;
     }
   }
 }
