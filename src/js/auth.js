@@ -1,11 +1,11 @@
-import { toLoginWindow, getUserName, removeUserName } from "./utils/utils.js";
+import { toLoginWindow, getJwtToken, logout } from './utils/utils.js';
 
 export function checkAuthorization() {
-  const userName = getUserName();
+  const userName = getJwtToken();
   if (!userName) {
     if (
-      window.location.pathname.includes("index.html") ||
-      window.location.pathname === "/"
+      window.location.pathname.includes('index.html') ||
+      window.location.pathname === '/'
     ) {
       toLoginWindow();
     }
@@ -15,6 +15,6 @@ export function checkAuthorization() {
 }
 
 export function exitToAuth() {
-  removeUserName();
+  logout();
   toLoginWindow();
 }

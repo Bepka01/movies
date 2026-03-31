@@ -14,6 +14,7 @@ export default defineConfig({
       input: {
         index: resolve(rootDir, 'src/pages/index.html'),
         auth: resolve(rootDir, 'src/pages/auth.html'),
+        signin: resolve(rootDir, 'src/pages/sign-up.html'),
       },
     },
   },

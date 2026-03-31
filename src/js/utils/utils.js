@@ -1,29 +1,41 @@
 function toLoginWindow() {
-  window.location.href = "/auth.html";
+  window.location.href = '/auth.html';
 }
 
 function redirectToMainWindow() {
-  window.location.href = "/index.html";
+  window.location.href = '/index.html';
 }
 
 function removeUserName() {
-  localStorage.removeItem("userName");
+  localStorage.removeItem('userName');
+}
+
+function logout() {
+  localStorage.removeItem('jwtToken');
+  localStorage.removeItem('userName');
+  localStorage.removeItem('userEmail');
 }
 
 function setUserName(username) {
-  localStorage.setItem("userName", username);
+  localStorage.setItem('userName', username);
 }
 
-function getUserName() {
-  return localStorage.getItem("userName");
+function getJwtToken() {
+  return localStorage.getItem('jwtToken');
 }
 
-const modalWindow = document.querySelector("#modalOverlay");
+function toRegistrationWindow() {
+  window.location.href = '/sign-up.html';
+}
+
+const modalWindow = document.querySelector('#modalOverlay');
 export {
   modalWindow,
   toLoginWindow,
   redirectToMainWindow,
   setUserName,
-  getUserName,
+  getJwtToken,
   removeUserName,
+  toRegistrationWindow,
+  logout,
 };

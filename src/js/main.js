@@ -1,15 +1,20 @@
 import '../scss/main.scss';
-import '../scss/test.scss';
 
+import './test.js';
 import { printFilm } from './printFilm.js';
 import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
 import { rednerSavedFilms } from './saveFilm.js';
-import { modalWindow } from './utils/utils.js';
+
+import { modalWindow, toLoginWindow } from './utils/utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   rednerSavedFilms();
-  if (!checkAuthorization()) return;
+
+  if (!checkAuthorization()) {
+    toLoginWindow();
+    return;
+  }
 
   const btnAdd = document.querySelector('.header__btn-add');
   const btnClose = document.querySelector('.header__btn-close');

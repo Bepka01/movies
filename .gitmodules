@@ -1,0 +1,3 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/e-bogatko/andrey-films-be

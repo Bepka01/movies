@@ -21,6 +21,12 @@ body {
       }
     }
 
+    .btn__reg {
+      background-color: $red;
+      font-size: 16px;
+      border-radius: $border-radius;
+      padding: 10px;
+    }
     .autorization__users {
       @include flex-center(column);
       width: 100%;
@@ -50,6 +56,7 @@ body {
       @include flex-center();
 
       .btn__auth {
+        margin-bottom: 15px;
         @include auth-button();
 
         @include atSmall {

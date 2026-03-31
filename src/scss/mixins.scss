@@ -169,7 +169,7 @@
 @mixin auth-card() {
   max-width: 600px;
   width: 100%;
-  height: 400px;
+  height: 515px;
   background-color: $color-white;
   color: $text-color;
   display: flex;
@@ -186,7 +186,7 @@
 
 @mixin auth-input() {
   border: 1px solid black;
-  max-width: 280px;
+  max-width: 100%;
   width: 100%;
   border-radius: 12px;
   padding: 5px;

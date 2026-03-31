@@ -1,16 +1,16 @@
-import { closeModal } from "./modal.js";
-import { deleteFilm } from "./saveFilm.js";
-import { saveFilm } from "./saveFilm.js";
-import { v4 as uuidv4 } from "uuid";
+import { closeModal } from './modal.js';
+import { deleteFilm, saveFilm, createMovieCheckbox } from './saveFilm.js';
+
+import { v4 as uuidv4 } from 'uuid';
 
 export function printFilm(filmInput = null) {
-  const ulMovieList = document.querySelector(".movie-list");
-  const addedFilm = document.querySelector(".input__film");
+  const ulMovieList = document.querySelector('.movie-list');
+  const addedFilm = document.querySelector('.input__film');
 
   const film = filmInput || addedFilm.value;
 
   if (!film.trim()) {
-    alert("Напишите название фильма");
+    alert('Напишите название фильма');
     return;
   }
 
@@ -18,30 +18,26 @@ export function printFilm(filmInput = null) {
     saveFilm(film);
   }
 
-  const liFilm = document.createElement("li");
-  liFilm.classList.add("movie-item");
+  const liFilm = document.createElement('li');
+  liFilm.classList.add('movie-item');
 
-  const nameFilm = document.createElement("span");
-  nameFilm.classList.add("movie-title");
+  const nameFilm = document.createElement('span');
+  nameFilm.classList.add('movie-title');
   nameFilm.textContent = film;
 
-  const btnDelete = document.createElement("button");
-  btnDelete.classList.add("movie__btn");
-  btnDelete.textContent = "Удалить фильм";
-  btnDelete.addEventListener("click", () => {
+  const btnDelete = document.createElement('button');
+  btnDelete.classList.add('movie__btn');
+  btnDelete.textContent = 'Удалить фильм';
+  btnDelete.addEventListener('click', () => {
     liFilm.remove();
     deleteFilm(film);
   });
 
-  const checkboxId = `movie-${uuidv4()}`;
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.classList.add("movie-checkbox");
-  checkbox.id = checkboxId;
+  const { checkbox, checkboxId } = createMovieCheckbox(film);
 
-  const label = document.createElement("label");
-  label.classList.add("movie-label");
-  label.textContent = "Просмотрено";
+  const label = document.createElement('label');
+  label.classList.add('movie-label');
+  label.textContent = 'Просмотрено';
   label.htmlFor = checkboxId;
 
   liFilm.appendChild(nameFilm);
@@ -50,7 +46,7 @@ export function printFilm(filmInput = null) {
   liFilm.appendChild(btnDelete);
 
   ulMovieList.prepend(liFilm);
-  addedFilm.value = "";
+  addedFilm.value = '';
 
   closeModal();
 }
