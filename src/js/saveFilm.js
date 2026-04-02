@@ -1,5 +1,6 @@
-import { printFilm } from './printFilm.js';
-// import { v4 as uuidv4 } from 'uuid';
+// import { printFilm2, printFilm } from './printFilm.js';
+import { v4 as uuidv4 } from 'uuid';
+import { printFilm2 } from './printFilm';
 
 function saveFilm(film) {
   const movies = JSON.parse(localStorage.getItem('movies')) || [];
@@ -7,10 +8,10 @@ function saveFilm(film) {
   localStorage.setItem('movies', JSON.stringify(movies));
 }
 
-function rednerSavedFilms() {
+function rednerSavedFilm() {
   const movies = JSON.parse(localStorage.getItem('movies')) || [];
   movies.forEach((film) => {
-    printFilm(film);
+    printFilm2(film);
   });
 }
 function deleteFilm(filmName) {
@@ -36,4 +37,4 @@ function createMovieCheckbox(film) {
   });
   return { checkbox, checkboxId };
 }
-export { saveFilm, rednerSavedFilms, deleteFilm, createMovieCheckbox };
+export { saveFilm, rednerSavedFilm, deleteFilm, createMovieCheckbox };

@@ -28,6 +28,13 @@ function toRegistrationWindow() {
   window.location.href = '/sign-up.html';
 }
 
+const STORAGE_KEYS = {
+  token: 'jwtToken',
+  username: 'userName',
+  email: 'userEmail',
+  userId: 'userid',
+};
+
 const modalWindow = document.querySelector('#modalOverlay');
 export {
   modalWindow,
@@ -38,4 +45,5 @@ export {
   removeUserName,
   toRegistrationWindow,
   logout,
+  STORAGE_KEYS,
 };

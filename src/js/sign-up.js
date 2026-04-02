@@ -1,3 +1,5 @@
+import { STORAGE_KEYS } from './utils/utils';
+
 const inputLoginSign = document.querySelector('.field-login');
 const inputPassSign = document.querySelector('.field-password');
 const inputMailSign = document.querySelector('.field-email');
@@ -33,28 +35,35 @@ btnSign.addEventListener('click', async function (e) {
     return;
   }
   const data = await register();
-  localStorage.setItem('jwtToken', data.jwt);
-  localStorage.setItem('userName', data.user.username);
-  localStorage.setItem('userEmail', data.user.email);
+  localStorage.setItem(STORAGE_KEYS.token, data.jwt);
+  localStorage.setItem(STORAGE_KEYS.username, data.user.username);
+  localStorage.setItem(STORAGE_KEYS.email, data.user.email);
 
   window.location.href = 'main.html';
 });
 
 async function register() {
-  const response = await fetch(
-    'http://localhost:1337/api/auth/local/register',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: inputLoginSign.value,
-        password: inputPassSign.value,
-        email: inputMailSign.value,
-      }),
+  try {
+    const response = await fetch(
+      'http://localhost:1337/api/auth/local/register',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: inputLoginSign.value,
+          password: inputPassSign.value,
+          email: inputMailSign.value,
+        }),
+      }
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.massage || alert(`ошибка: ${response.status}`));
     }
-  );
-  const data = await response.json();
-  return data;
+    return data;
+  } catch (error) {
+    alert(error.massage);
+  }
 }
