@@ -1,10 +1,7 @@
 import '../../scss/auth.scss';
-import {
-  redirectToMainWindow,
-  getJwtToken,
-  toRegistrationWindow,
-  STORAGE_KEYS,
-} from '../utils/utils.js';
+import { toMainWindow, toRegistrationWindow } from '../utils/navigaion.js';
+import { STORAGE_KEYS } from '../utils/constants.js';
+import { getJwtToken } from '../utils/auth-storage.js';
 
 const inputLogin = document.querySelector('.authorization__login');
 const inputPassword = document.querySelector('.authorization__password');
@@ -28,12 +25,12 @@ authBtn.addEventListener('click', async () => {
   }
   localStorage.setItem(STORAGE_KEYS.token, dataLogin.token);
   localStorage.setItem(STORAGE_KEYS.username, dataLogin.name);
-  redirectToMainWindow();
+  toMainWindow();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   if (getJwtToken()) {
-    redirectToMainWindow();
+    toMainWindow();
   }
 });
 

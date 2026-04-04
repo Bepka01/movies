@@ -1,4 +1,5 @@
-import { toLoginWindow, getJwtToken, logout } from './utils/utils.js';
+import { getJwtToken, logout } from '../js/utils/auth-storage';
+import { toLoginWindow } from '../js/utils/navigaion';
 
 export function checkAuthorization() {
   const userName = getJwtToken();

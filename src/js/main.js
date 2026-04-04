@@ -1,14 +1,14 @@
 import '../scss/main.scss';
 
-// import './test.js';
-import { printFilm2, sendFilm } from './printFilm.js';
+import { printFilm, sendFilm } from './printFilm.js';
 import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
 import { rednerSavedFilm } from './saveFilm.js';
 
-import { modalWindow, toLoginWindow } from './utils/utils.js';
+import { toLoginWindow } from './utils/navigaion.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  const modalWindow = document.querySelector('#modalOverlay');
   rednerSavedFilm();
 
   if (!checkAuthorization()) {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnCancel.addEventListener('click', closeModal);
   closeModalBtn.addEventListener('click', closeModal);
-  // btnAddFilm.addEventListener('click', () => printFilm(null, false));
+
   btnAddFilm.addEventListener('click', sendFilm);
   addedFilm.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') printFilm();

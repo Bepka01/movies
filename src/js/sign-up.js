@@ -1,4 +1,4 @@
-import { STORAGE_KEYS } from './utils/utils';
+import { STORAGE_KEYS } from './utils/constants';
 
 const inputLoginSign = document.querySelector('.field-login');
 const inputPassSign = document.querySelector('.field-password');

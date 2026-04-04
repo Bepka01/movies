@@ -1,6 +1,5 @@
-// import { printFilm2, printFilm } from './printFilm.js';
 import { v4 as uuidv4 } from 'uuid';
-import { printFilm2 } from './printFilm';
+import { printFilm } from './printFilm';
 
 function saveFilm(film) {
   const movies = JSON.parse(localStorage.getItem('movies')) || [];
@@ -11,7 +10,7 @@ function saveFilm(film) {
 function rednerSavedFilm() {
   const movies = JSON.parse(localStorage.getItem('movies')) || [];
   movies.forEach((film) => {
-    printFilm2(film);
+    printFilm(film);
   });
 }
 function deleteFilm(filmName) {
