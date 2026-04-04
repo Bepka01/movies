@@ -2,9 +2,10 @@ import '../../scss/auth.scss';
 import { toMainWindow, toRegistrationWindow } from '../utils/navigaion.js';
 import { STORAGE_KEYS } from '../utils/constants.js';
 import { getJwtToken } from '../utils/auth-storage.js';
+import { login } from '../api/auth.js';
 
-const inputLogin = document.querySelector('.authorization__login');
-const inputPassword = document.querySelector('.authorization__password');
+export const inputLogin = document.querySelector('.authorization__login');
+export const inputPassword = document.querySelector('.authorization__password');
 const authBtn = document.querySelector('.btn__auth');
 
 const btnReg = document.querySelector('.btn__reg');
@@ -33,25 +34,3 @@ document.addEventListener('DOMContentLoaded', () => {
     toMainWindow();
   }
 });
-
-async function login() {
-  try {
-    const response = await fetch('http://localhost:1337/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        password: inputPassword.value,
-        email: inputLogin.value,
-      }),
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message || `Ошибка: ${response.status}`);
-    }
-    return data;
-  } catch (error) {
-    alert('error.massage');
-  }
-}
