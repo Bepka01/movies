@@ -5,7 +5,7 @@ import { deleteFilm } from './saveFilm';
 
 export function printFilm(data) {
   const ulMovieList = document.querySelector('.movie-list');
-  const filmTitle = data.data.title;
+  const filmTitle = data.title;
 
   const liFilm = document.createElement('li');
   liFilm.classList.add('movie-item');

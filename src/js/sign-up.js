@@ -1,4 +1,3 @@
-import { STORAGE_KEYS } from './utils/constants';
 import { toMainWindow } from './utils/navigaion';
 import { signUpData } from './utils/auth-storage';
 import { register } from './api/registr';

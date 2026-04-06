@@ -6,10 +6,12 @@ import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
 import { rednerSavedFilm } from './saveFilm.js';
 import { getNameHeader } from './utils/auth-storage.js';
+import { init } from './api/user-movies-api.js';
 
 import { toLoginWindow } from './utils/navigaion.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  init();
   const modalWindow = document.querySelector('#modalOverlay');
   rednerSavedFilm();
 
@@ -36,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnAddFilm.addEventListener('click', sendFilm);
   addedFilm.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') printFilm();
+    if (e.key === 'Enter') sendFilm();
     if (e.key === 'Escape') {
       modalWindow.classList.remove('active');
     }
