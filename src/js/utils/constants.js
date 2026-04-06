@@ -3,4 +3,11 @@ export const STORAGE_KEYS = {
   username: 'userName',
   email: 'userEmail',
   userId: 'userid',
+  isWatched: 'false',
+};
+
+export const PAGES = {
+  login: 'auth.html',
+  main: 'index.html',
+  registration: 'sign-up.html',
 };

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { printFilm } from './api/movies';
+import { printFilm } from './printFilm';
 
 function saveFilm(film) {
   const movies = JSON.parse(localStorage.getItem('movies')) || [];

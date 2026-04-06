@@ -1,7 +1,7 @@
 import '../../scss/auth.scss';
 import { toMainWindow, toRegistrationWindow } from '../utils/navigaion.js';
-import { STORAGE_KEYS } from '../utils/constants.js';
-import { getJwtToken } from '../utils/auth-storage.js';
+
+import { getJwtToken, signIn } from '../utils/auth-storage.js';
 import { login } from '../api/auth.js';
 
 export const inputLogin = document.querySelector('.authorization__login');
@@ -24,8 +24,7 @@ authBtn.addEventListener('click', async () => {
     alert('Ошибка');
     return;
   }
-  localStorage.setItem(STORAGE_KEYS.token, dataLogin.token);
-  localStorage.setItem(STORAGE_KEYS.username, dataLogin.name);
+  signIn(dataLogin);
   toMainWindow();
 });
 

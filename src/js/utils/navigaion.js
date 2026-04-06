@@ -1,13 +1,15 @@
+import { PAGES } from './constants';
+
 function toLoginWindow() {
-  window.location.href = '/auth.html';
+  window.location.href = `/${PAGES.login}`;
 }
 
 function toMainWindow() {
-  window.location.href = '/index.html';
+  window.location.href = `/${PAGES.main}`;
 }
 
 function toRegistrationWindow() {
-  window.location.href = '/sign-up.html';
+  window.location.href = `/${PAGES.registration}`;
 }
 
 export { toLoginWindow, toMainWindow, toRegistrationWindow };

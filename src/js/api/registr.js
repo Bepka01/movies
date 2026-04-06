@@ -1,6 +1,6 @@
 import { inputLoginSign, inputMailSign, inputPassSign } from '../sign-up';
 
-async function register() {
+export async function register() {
   try {
     const response = await fetch(
       'http://localhost:1337/api/auth/local/register',

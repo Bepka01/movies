@@ -1,4 +1,7 @@
 import { STORAGE_KEYS } from './utils/constants';
+import { toMainWindow } from './utils/navigaion';
+import { signUpData } from './utils/auth-storage';
+import { register } from './api/registr';
 
 const inputLoginSign = document.querySelector('.field-login');
 const inputPassSign = document.querySelector('.field-password');
@@ -35,11 +38,9 @@ btnSign.addEventListener('click', async function (e) {
     return;
   }
   const data = await register();
-  localStorage.setItem(STORAGE_KEYS.token, data.jwt);
-  localStorage.setItem(STORAGE_KEYS.username, data.user.username);
-  localStorage.setItem(STORAGE_KEYS.email, data.user.email);
 
-  window.location.href = 'main.html';
+  signUpData(data);
+  toMainWindow();
 });
 
 export { inputLoginSign, inputMailSign, inputPassSign };
