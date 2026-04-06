@@ -5,6 +5,7 @@ import { sendFilm } from './api/movies.js';
 import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
 import { rednerSavedFilm } from './saveFilm.js';
+import { getNameHeader } from './utils/auth-storage.js';
 
 import { toLoginWindow } from './utils/navigaion.js';
 
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toLoginWindow();
     return;
   }
-
+  const userName = document.querySelector('.user__name');
   const btnAdd = document.querySelector('.header__btn-add');
   const btnClose = document.querySelector('.header__btn-close');
   const btnAddFilm = document.querySelector('.modal-agree');
@@ -27,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   btnAdd.addEventListener('click', () => {
     modalWindow.classList.add('active');
   });
+
+  userName.innerHTML = getNameHeader();
 
   btnCancel.addEventListener('click', closeModal);
   closeModalBtn.addEventListener('click', closeModal);

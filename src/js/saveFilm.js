@@ -32,7 +32,7 @@ function createMovieCheckbox(film) {
   }
 
   checkbox.addEventListener('change', () => {
-    localStorage.setItem(checkboxId, checkbox.checked);
+    // localStorage.setItem(checkboxId, checkbox.checked);
   });
   return { checkbox, checkboxId };
 }

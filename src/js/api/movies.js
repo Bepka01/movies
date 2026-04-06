@@ -1,6 +1,5 @@
 import { STORAGE_KEYS } from '../utils/constants';
 import { printFilm } from '../printFilm';
-import { dataMoviesLs } from '../utils/auth-storage';
 
 export async function sendFilm() {
   const addedFilm = document.querySelector('.input__film');
@@ -27,7 +26,6 @@ export async function sendFilm() {
       throw new Error(data.massage || alert(`ошибка: ${response.status}`));
     }
 
-    dataMoviesLs(data);
     printFilm(data);
     addedFilm.value = '';
     return data;

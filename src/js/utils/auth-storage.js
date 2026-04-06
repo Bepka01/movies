@@ -10,6 +10,10 @@ function logout() {
   localStorage.removeItem(STORAGE_KEYS.email);
 }
 
+function getNameHeader() {
+  return localStorage.getItem(STORAGE_KEYS.username);
+}
+
 function setUserName(username) {
   localStorage.setItem(STORAGE_KEYS.username, username);
 }
@@ -28,11 +32,6 @@ function signIn(data) {
   localStorage.setItem(STORAGE_KEYS.username, data.name);
 }
 
-function dataMoviesLs(data) {
-  localStorage.setItem(data.data.title, 'film');
-  localStorage.setItem('isWatched', String(data.data.isWatched));
-}
-
 export {
   removeUserName,
   logout,
@@ -40,5 +39,5 @@ export {
   getJwtToken,
   signUpData,
   signIn,
-  dataMoviesLs,
+  getNameHeader,
 };
