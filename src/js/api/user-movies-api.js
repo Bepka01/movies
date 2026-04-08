@@ -8,7 +8,7 @@ export async function getAllFilms() {
     throw new Error('Токен не найден');
   }
   try {
-    const response = await fetch('http://localhost:1337/api/movies', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/movies`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

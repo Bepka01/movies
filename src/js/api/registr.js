@@ -3,7 +3,7 @@ import { inputLoginSign, inputMailSign, inputPassSign } from '../sign-up';
 export async function register() {
   try {
     const response = await fetch(
-      'http://localhost:1337/api/auth/local/register',
+      `${import.meta.env.VITE_API_URL}/auth/local/register`,
       {
         method: 'POST',
         headers: {

@@ -6,7 +6,7 @@ export async function sendFilm() {
   const token = localStorage.getItem(STORAGE_KEYS.token);
 
   try {
-    const response = await fetch('http://localhost:1337/api/movies', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export async function sendFilm() {
       throw new Error(data.massage || alert(`ошибка: ${response.status}`));
     }
 
-    printFilm(data);
+    printFilm(data.data);
     addedFilm.value = '';
     return data;
   } catch (error) {

@@ -160,7 +160,7 @@
   }
 }
 
-@mixin atExtraSmall {
+@mixin media-extra-small {
   @media (max-width: 480px) {
     @content;
   }
