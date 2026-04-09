@@ -25,6 +25,7 @@ function createMovieCheckbox(film) {
   checkbox.type = 'checkbox';
   checkbox.classList.add('movie-checkbox');
   checkbox.id = checkboxId;
+  checkbox.classList.add('movie-checkbox');
 
   const savedState = localStorage.getItem(checkboxId);
   if (savedState === 'true') {

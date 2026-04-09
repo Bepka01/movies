@@ -2,18 +2,9 @@ import { toMainWindow } from './utils/navigaion';
 import { signUpData } from './utils/auth-storage';
 import { register } from './api/registr';
 
-const inputLoginSign = document.querySelector('.field-login');
 const inputPassSign = document.querySelector('.field-password');
 const inputMailSign = document.querySelector('.field-email');
 const btnSign = document.querySelector('.btn-register');
-
-function checkLogin() {
-  if (inputLoginSign.value.length <= 4) {
-    alert('Заполните поле логин');
-    return false;
-  }
-  return true;
-}
 
 function checkPass() {
   if (inputPassSign.value.length <= 4) {
@@ -33,7 +24,7 @@ function checkMail() {
 
 btnSign.addEventListener('click', async function (e) {
   e.preventDefault();
-  if (!checkLogin() || !checkPass() || !checkMail()) {
+  if (!checkPass() || !checkMail()) {
     return;
   }
   const data = await register();
@@ -42,4 +33,4 @@ btnSign.addEventListener('click', async function (e) {
   toMainWindow();
 });
 
-export { inputLoginSign, inputMailSign, inputPassSign };
+export { inputMailSign, inputPassSign };

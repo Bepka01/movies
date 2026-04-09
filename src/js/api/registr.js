@@ -1,4 +1,4 @@
-import { inputLoginSign, inputMailSign, inputPassSign } from '../sign-up';
+import { inputMailSign, inputPassSign } from '../sign-up';
 
 export async function register() {
   try {
@@ -10,7 +10,7 @@ export async function register() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: inputLoginSign.value,
+          username: inputMailSign.value,
           password: inputPassSign.value,
           email: inputMailSign.value,
         }),
