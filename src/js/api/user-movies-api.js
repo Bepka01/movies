@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from '../utils/constants';
-import { printFilm } from '../printFilm';
+import { printFilm } from '../saveFilm';
 
 export async function getAllFilms() {
   const token = localStorage.getItem(STORAGE_KEYS.token);
