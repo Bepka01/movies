@@ -160,7 +160,7 @@
   }
 }
 
-@mixin media-extra-small {
+@mixin breakpoint-extra-small {
   @media (max-width: 480px) {
     @content;
   }

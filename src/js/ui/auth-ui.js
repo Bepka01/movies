@@ -1,6 +1,5 @@
 import '../../scss/auth.scss';
 import { toMainWindow, toRegistrationWindow } from '../utils/navigaion.js';
-
 import { getJwtToken, signIn } from '../utils/auth-storage.js';
 import { login } from '../api/auth.js';
 
