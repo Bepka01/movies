@@ -160,7 +160,7 @@
   }
 }
 
-@mixin atExtraSmall {
+@mixin breakpoint-extra-small {
   @media (max-width: 480px) {
     @content;
   }
