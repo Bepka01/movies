@@ -1,0 +1,118 @@
+@use './reset';
+@use './variables' as *;
+@use './mixins.scss' as *;
+
+body {
+  background-color: $color-gray;
+}
+
+.authorization {
+  @include flex-center();
+  height: 100vh;
+
+  .card__authorization {
+    @include auth-card();
+
+    .authorization__title {
+      margin-bottom: 60px;
+
+      @include atSmall {
+        font-size: 18px;
+      }
+    }
+
+    .btn__reg {
+      background-color: $red;
+      font-size: 16px;
+      border-radius: $border-radius;
+      padding: 10px;
+    }
+    .autorization__users {
+      @include flex-center(column);
+      width: 100%;
+
+      .authorization__inputs {
+        font-size: 18px;
+        font-weight: 500;
+        display: flex;
+        gap: 2px;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        .authorization__span {
+          margin-bottom: 3px;
+        }
+
+        .authorization__login,
+        .authorization__password {
+          @include auth-input();
+        }
+      }
+    }
+
+    .authorization__btn {
+      width: 100%;
+      @include flex-center();
+
+      .btn__auth {
+        margin-bottom: 15px;
+        @include auth-button();
+
+        @include atSmall {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+// Дополнительные медиа-запросы
+@include atSmall {
+  .card__authorization {
+    height: 450px;
+    padding: 15px;
+    margin: 5px;
+
+    .authorization__title {
+      margin-bottom: 40px;
+    }
+
+    .authorization__inputs {
+      margin-bottom: 25px;
+
+      .authorization__login,
+      .authorization__password {
+        max-width: 100%;
+        padding: 8px;
+      }
+    }
+  }
+}
+
+@include breakpoint-extra-small {
+  .card__authorization {
+    height: 500px;
+    max-width: 95%;
+    padding: 20px;
+    margin: 10px;
+
+    .authorization__title {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .authorization__inputs {
+      .authorization__login,
+      .authorization__password {
+        padding: 12px;
+        font-size: 16px;
+      }
+    }
+
+    .btn__auth {
+      height: 50px;
+      font-size: 18px;
+    }
+  }
+}

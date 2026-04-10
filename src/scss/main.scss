@@ -1,0 +1,283 @@
+@use './reset';
+@use './variables' as *;
+@use './mixins.scss' as *;
+
+header {
+  background-color: $color-white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .logo__name {
+    font-size: 24px;
+    font-weight: 600;
+    color: $color-green;
+  }
+
+  .user__name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .btn__header {
+    display: flex;
+    gap: 10px;
+  }
+
+  .header__btn-add,
+  .header__btn-close {
+    @include btn-base();
+  }
+
+  .header__btn-add {
+    background-color: $color-green;
+    color: white;
+    @include btn-hover($color-gray);
+  }
+
+  .header__btn-close {
+    background-color: $red;
+    color: white;
+    @include btn-hover($dark-red, rgba(244, 67, 54, 0.4));
+  }
+}
+
+.movie-item {
+  @include movie-card();
+  width: 100%;
+  max-width: 100%;
+
+  .movie-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: 10px;
+    word-break: break-word;
+    line-height: 1.4;
+  }
+
+  .movie-checkbox {
+    @include custom-checkbox();
+  }
+
+  .movie-label {
+    @include checkbox-label();
+  }
+
+  .movie__btn {
+    @include btn-base();
+    min-width: 100px;
+    background-color: $red;
+    color: white;
+    @include btn-hover($dark-red, rgba(244, 67, 54, 0.4));
+  }
+}
+
+.movie-list {
+  @include grid-responsive(280px, 20px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.film__list {
+  display: contents;
+}
+
+.btn__films {
+  display: flex;
+  gap: 15px;
+  padding: 20px 30px;
+  background-color: $color-white;
+  box-shadow: $shadow;
+  margin: 20px 30px 0;
+  border-radius: $border-radius;
+  overflow-x: auto;
+
+  button {
+    @include filter-btn();
+  }
+}
+
+.title__films {
+  padding: 0 30px;
+  margin: 20px 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: $text-color;
+}
+
+.film__container {
+  @include container-padding();
+}
+
+.active {
+  display: block;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    display: flex;
+  }
+
+  .modal {
+    @include modal-base();
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 25px;
+      border-bottom: 1px solid #eee;
+
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+
+    .modal-body {
+      padding: 30px 25px;
+
+      .modal-text {
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: $text-color;
+      }
+
+      .input__film,
+      .modal-input {
+        @include input-base();
+      }
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 10px;
+      padding: 20px 25px;
+      border-top: 1px solid #eee;
+      justify-content: flex-end;
+
+      .modal-agree {
+        @include modal-btn($color-green, #45a049);
+      }
+
+      .modal-cancel {
+        @include modal-btn($color-gray, $color-gray);
+        color: $text-color;
+      }
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: $red;
+      }
+    }
+  }
+}
+
+// Медиа-запросы
+@media (max-width: 768px) {
+  header {
+    padding: 12px 20px;
+    flex-direction: column;
+    gap: 15px;
+
+    .logo__name {
+      font-size: 20px;
+    }
+
+    .btn__header {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .btn__films {
+    padding: 15px 20px;
+    margin: 15px 20px 0;
+    justify-content: center;
+  }
+
+  .title__films {
+    padding: 0 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .film__container {
+    @include container-padding(20px);
+  }
+
+  .film__list {
+    @include grid-responsive(200px, 15px);
+  }
+
+  .movie-item {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .movie-list {
+    @include grid-responsive(250px, 15px);
+  }
+
+  .movie-title {
+    font-size: 16px;
+  }
+
+  .movie-label {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .modal {
+    width: 95%;
+    margin: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .film__list,
+  .movie-list {
+    @include grid-responsive(100%, 15px);
+  }
+
+  .btn__films {
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      width: 200px;
+    }
+  }
+}
