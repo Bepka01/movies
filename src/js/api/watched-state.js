@@ -1,7 +1,7 @@
-import { STORAGE_KEYS } from '../utils/constants';
+import { getToken } from '../utils/helpers';
 
 export async function changeStatusIsWatched(movieUuid, isWatched) {
-  const token = localStorage.getItem(STORAGE_KEYS.token);
+  const token = getToken();
 
   const response = await fetch(
     `${import.meta.env.VITE_API_URL}/movies/${movieUuid}`,
@@ -18,6 +18,11 @@ export async function changeStatusIsWatched(movieUuid, isWatched) {
       }),
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`Ошибка получения фильмов: ${response.status}`);
+  }
+
   const data = await response.json();
   return data;
 }

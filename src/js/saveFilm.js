@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { closeModal } from './modal';
 import { changeStatusIsWatched } from './api/watched-state';
 
@@ -38,8 +37,8 @@ function printFilm(data) {
     const newStatus = event.target.checked;
 
     try {
-      await changeStatusIsWatched(filmUuid, newStatus);
-      updateWatchedUI(liFilm, newStatus);
+      const updateCheckBox = await changeStatusIsWatched(filmUuid, newStatus);
+      updateWatchedUI(liFilm, updateCheckBox.data.isWatched);
     } catch (error) {
       console.error('Ошибка обновления статуса:', error);
       event.target.checked = !newStatus;

@@ -17,11 +17,12 @@ export async function register() {
       }
     );
     const data = await response.json();
+
     if (!response.ok) {
-      throw new Error(data.massage || alert(`ошибка: ${response.status}`));
+      throw new Error(data.message || `Ошибка регистрации: ${response.status}`);
     }
     return data;
   } catch (error) {
-    alert(error.massage);
+    alert(error.message);
   }
 }

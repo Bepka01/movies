@@ -21,7 +21,7 @@ export async function sendFilm() {
     });
 
     const data = await response.json();
-    console.log(data);
+
     if (!response.ok) {
       throw new Error(data.massage || alert(`ошибка: ${response.status}`));
     }
