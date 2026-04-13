@@ -1,13 +1,10 @@
 import { closeModal } from './modal';
-import { changeStatusIsWatched } from './api/watched-state';
+import { changeStatusIsWatched, getAllFilms, removeMovie } from './api/movies';
 
 function updateWatchedUI(filmElement, isWatched) {
   const checkbox = filmElement.querySelector('.movie-checkbox');
-  if (isWatched) {
-    checkbox.checked = true;
-  } else {
-    checkbox.checked = false;
-  }
+  if (!checkbox) return;
+  checkbox.checked = isWatched;
 }
 
 function printFilm(data) {
@@ -49,9 +46,9 @@ function printFilm(data) {
   btnDelete.classList.add('movie__btn');
   btnDelete.textContent = 'Удалить фильм';
 
-  btnDelete.addEventListener('click', () => {
+  btnDelete.addEventListener('click', async () => {
     liFilm.remove();
-    deleteFilm(filmTitle);
+    removeMovie(filmUuid);
   });
 
   liFilm.appendChild(nameFilm);
@@ -85,18 +82,22 @@ function deleteFilm(filmName) {
 function createMovieCheckbox(film) {
   const checkbox = document.createElement('input');
   const checkboxId = `movie-${film}`;
+
   checkbox.type = 'checkbox';
   checkbox.classList.add('movie-checkbox');
   checkbox.id = checkboxId;
-  checkbox.classList.add('movie-checkbox');
-
-  const savedState = localStorage.getItem(checkboxId);
-  if (savedState === 'true') {
-    checkbox.checked = true;
-  }
 
   checkbox.addEventListener('change', () => {});
   return { checkbox, checkboxId };
+}
+
+export async function init() {
+  try {
+    const films = await getAllFilms();
+    films.forEach((film) => printFilm(film));
+  } catch (error) {
+    console.error('Не удалось инициализировать фильмы:', error.message);
+  }
 }
 
 export {

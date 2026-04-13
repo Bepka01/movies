@@ -2,10 +2,8 @@ import '../scss/main.scss';
 import { sendFilm } from './api/movies.js';
 import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
-import { rednerSavedFilm } from './saveFilm.js';
+import { rednerSavedFilm, init } from './saveFilm.js';
 import { getNameHeader } from './utils/auth-storage.js';
-import { init } from './api/movies-init.js';
-
 import { toLoginWindow } from './utils/navigaion.js';
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -25,7 +25,6 @@ function getJwtToken() {
 function signUpData(data) {
   localStorage.setItem(STORAGE_KEYS.token, data.jwt);
   localStorage.setItem(STORAGE_KEYS.username, data.user.username);
-  console.log(data);
 }
 
 function signIn(data) {

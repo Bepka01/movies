@@ -30,7 +30,6 @@ btnSign.addEventListener('click', async function (e) {
   const data = await register();
 
   signUpData(data);
-  console.log(signUpData(data));
   toMainWindow();
 });
 
