@@ -6,6 +6,7 @@ const rootDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   root: resolve(rootDir, 'src/pages'),
+  envDir: rootDir,
   publicDir: resolve(rootDir, 'public'),
   build: {
     outDir: resolve(rootDir, 'dist'),
