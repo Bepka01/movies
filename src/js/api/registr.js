@@ -1,6 +1,4 @@
-import { inputMailSign, inputPassSign } from '../sign-up';
-
-export async function register() {
+export async function register({ email, password }) {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/auth/local/register`,
@@ -10,9 +8,9 @@ export async function register() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: inputMailSign.value,
-          password: inputPassSign.value,
-          email: inputMailSign.value,
+          username: email,
+          password: password,
+          email: email,
         }),
       }
     );

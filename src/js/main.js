@@ -2,14 +2,13 @@ import '../scss/main.scss';
 import { sendFilm } from './api/movies.js';
 import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
-import { rednerSavedFilm, initAllFilms } from './film.js';
+import { initAllFilms, printFilm } from './film.js';
 import { getNameHeader } from './utils/auth-storage.js';
 import { toLoginWindow } from './utils/navigaion.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAllFilms();
   const modalWindow = document.querySelector('#modalOverlay');
-  rednerSavedFilm();
 
   if (!checkAuthorization()) {
     toLoginWindow();
@@ -32,9 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
   btnCancel.addEventListener('click', closeModal);
   closeModalBtn.addEventListener('click', closeModal);
 
-  btnAddFilm.addEventListener('click', sendFilm);
+  async function sendFilmHandler() {
+    const dataTitleFilm = await sendFilm(addedFilm.value);
+
+    printFilm(dataTitleFilm.data);
+    closeModal();
+    addedFilm.value = '';
+  }
+
+  btnAddFilm.addEventListener('click', () => {
+    sendFilmHandler();
+  });
+
   addedFilm.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') sendFilm();
+    if (e.key === 'Enter') {
+      sendFilmHandler();
+    }
     if (e.key === 'Escape') {
       modalWindow.classList.remove('active');
     }

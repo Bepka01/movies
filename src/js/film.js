@@ -1,4 +1,3 @@
-import { closeModal } from './modal';
 import { changeStatusIsWatched, getAllFilms, removeMovie } from './api/movies';
 
 function updateWatchedUI(filmElement, isWatched) {
@@ -56,26 +55,6 @@ function printFilm(data) {
   liFilm.appendChild(btnDelete);
 
   ulMovieList.prepend(liFilm);
-
-  closeModal();
-}
-
-function saveFilm(film) {
-  const movies = JSON.parse(localStorage.getItem('movies')) || [];
-  movies.push(film);
-  localStorage.setItem('movies', JSON.stringify(movies));
-}
-
-function rednerSavedFilm() {
-  const movies = JSON.parse(localStorage.getItem('movies')) || [];
-  movies.forEach((film) => {
-    printFilm(film);
-  });
-}
-function deleteFilm(filmName) {
-  let movies = JSON.parse(localStorage.getItem('movies')) || [];
-  movies = movies.filter((film) => film !== filmName);
-  localStorage.setItem('movies', JSON.stringify(movies));
 }
 
 function createMovieCheckbox(film) {
@@ -99,11 +78,4 @@ async function initAllFilms() {
   }
 }
 
-export {
-  saveFilm,
-  rednerSavedFilm,
-  deleteFilm,
-  createMovieCheckbox,
-  printFilm,
-  initAllFilms,
-};
+export { createMovieCheckbox, printFilm, initAllFilms };
