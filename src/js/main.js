@@ -2,12 +2,12 @@ import '../scss/main.scss';
 import { sendFilm } from './api/movies.js';
 import { checkAuthorization, exitToAuth } from './auth.js';
 import { closeModal, closeModalBtn, btnCancel } from './modal.js';
-import { rednerSavedFilm, init } from './saveFilm.js';
+import { rednerSavedFilm, initAllFilms } from './film.js';
 import { getNameHeader } from './utils/auth-storage.js';
 import { toLoginWindow } from './utils/navigaion.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  init();
+  initAllFilms();
   const modalWindow = document.querySelector('#modalOverlay');
   rednerSavedFilm();
 

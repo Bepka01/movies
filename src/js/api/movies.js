@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from '../utils/constants';
-import { printFilm } from '../saveFilm';
+import { printFilm } from '../film';
 
 export async function sendFilm() {
   const addedFilm = document.querySelector('.input__film');

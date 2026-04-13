@@ -9,8 +9,7 @@ function updateWatchedUI(filmElement, isWatched) {
 
 function printFilm(data) {
   const ulMovieList = document.querySelector('.movie-list');
-  const filmTitle = data.title;
-  const filmUuid = data.uuid;
+  const { title: filmTitle, uuid: filmUuid } = data;
 
   const liFilm = document.createElement('li');
   liFilm.classList.add('movie-item');
@@ -91,7 +90,7 @@ function createMovieCheckbox(film) {
   return { checkbox, checkboxId };
 }
 
-export async function init() {
+async function initAllFilms() {
   try {
     const films = await getAllFilms();
     films.forEach((film) => printFilm(film));
@@ -106,4 +105,5 @@ export {
   deleteFilm,
   createMovieCheckbox,
   printFilm,
+  initAllFilms,
 };
