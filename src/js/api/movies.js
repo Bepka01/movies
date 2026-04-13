@@ -12,7 +12,7 @@ export async function sendFilm(title) {
       },
       body: JSON.stringify({
         data: {
-          title: title,
+          title,
           isWatched: false,
         },
       }),
@@ -21,74 +21,94 @@ export async function sendFilm(title) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.massage || alert(`ошибка: ${response.status}`));
+      throw new Error(data.message || `Ошибка: ${response.status}`);
     }
 
     return data;
   } catch (error) {
-    alert(error.message);
+    console.error(error);
+    return null;
   }
 }
 
 export async function getAllFilms() {
   const token = getToken();
 
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/movies`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/movies`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  const result = await response.json();
+    const result = await response.json();
 
-  if (!response.ok) {
-    throw new Error(`Ошибка получения фильмов: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`Ошибка получения фильмов: ${response.status}`);
+    }
+
+    return result.data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
-
-  return result.data;
 }
 
 export async function changeStatusIsWatched(movieUuid, isWatched) {
   const token = getToken();
 
-  const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/movies/${movieUuid}`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        data: {
-          isWatched: isWatched,
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/movies/${movieUuid}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-      }),
+        body: JSON.stringify({
+          data: {
+            isWatched,
+          },
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`Ошибка обновления статуса: ${response.status}`);
     }
-  );
 
-  if (!response.ok) {
-    throw new Error(`Ошибка получения фильмов: ${response.status}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
-
-  const data = await response.json();
-  return data;
 }
 
 export async function removeMovie(movieUuid) {
   const token = getToken();
-  const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/movies/${movieUuid}`,
-    {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/movies/${movieUuid}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Ошибка удаления фильма: ${response.status}`);
     }
-  );
-  if (!response.ok) {
-    throw new Error(`Ошибка удаления фильма: ${response.status}`);
+
+    return true;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
-  return response;
 }

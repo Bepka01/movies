@@ -45,8 +45,9 @@ function printFilm(data) {
   btnDelete.textContent = 'Удалить фильм';
 
   btnDelete.addEventListener('click', async () => {
+    const deletedMovie = await removeMovie(filmUuid);
+    if (!deletedMovie) return;
     liFilm.remove();
-    removeMovie(filmUuid);
   });
 
   liFilm.appendChild(nameFilm);
