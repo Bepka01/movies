@@ -31,11 +31,20 @@ export async function sendFilm(title) {
   }
 }
 
-export async function getAllFilms() {
+export async function getAllFilms(filter) {
   const token = getToken();
 
+  let url = `${import.meta.env.VITE_API_URL}/movies`;
+
+  if (filter === 'watched') {
+    url += '?filters[isWatched][$eq]=true';
+  }
+
+  if (filter === 'unwatched') {
+    url += '?filters[isWatched][$eq]=false';
+  }
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/movies`, {
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

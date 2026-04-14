@@ -66,13 +66,17 @@ function createMovieCheckbox(film) {
   checkbox.classList.add('movie-checkbox');
   checkbox.id = checkboxId;
 
-  checkbox.addEventListener('change', () => {});
   return { checkbox, checkboxId };
 }
 
-async function initAllFilms() {
+async function initAllFilms(filter = 'all') {
   try {
-    const films = await getAllFilms();
+    const ulMovieList = document.querySelector('.movie-list');
+    ulMovieList.innerHTML = '';
+    const films = await getAllFilms(filter);
+
+    if (!films) return;
+
     films.forEach((film) => printFilm(film));
   } catch (error) {
     console.error('Не удалось инициализировать фильмы:', error.message);

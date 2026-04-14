@@ -14,11 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
     toLoginWindow();
     return;
   }
+
+  const btnAll = document.querySelector('.btn-all');
+  const btnWatched = document.querySelector('.btn-watched');
+  const btnUnwatched = document.querySelector('.btn-unwatched');
   const userName = document.querySelector('.user__name');
   const btnAdd = document.querySelector('.header__btn-add');
   const btnClose = document.querySelector('.header__btn-close');
   const btnAddFilm = document.querySelector('.modal-agree');
   const addedFilm = document.querySelector('.input__film');
+
+  btnAll.addEventListener('click', () => {
+    initAllFilms('all');
+  });
+
+  btnWatched.addEventListener('click', () => {
+    initAllFilms('watched');
+  });
+
+  btnUnwatched.addEventListener('click', () => {
+    initAllFilms('unwatched');
+  });
 
   btnClose.addEventListener('click', exitToAuth);
 
