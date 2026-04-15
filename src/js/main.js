@@ -5,6 +5,7 @@ import { closeModal, closeModalBtn, btnCancel } from './modal.js';
 import { initAllFilms, printFilm } from './film.js';
 import { getNameHeader } from './utils/auth-storage.js';
 import { toLoginWindow } from './utils/navigaion.js';
+import { FILTERS } from './utils/constants.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAllFilms();
@@ -25,15 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const addedFilm = document.querySelector('.input__film');
 
   btnAll.addEventListener('click', () => {
-    initAllFilms('all');
+    initAllFilms();
   });
 
   btnWatched.addEventListener('click', () => {
-    initAllFilms('watched');
+    initAllFilms(FILTERS.WATCHED);
   });
 
   btnUnwatched.addEventListener('click', () => {
-    initAllFilms('unwatched');
+    initAllFilms(FILTERS.UNWATCHED);
   });
 
   btnClose.addEventListener('click', exitToAuth);

@@ -11,3 +11,8 @@ export const PAGES = {
   main: 'index.html',
   registration: 'sign-up.html',
 };
+
+export const FILTERS = {
+  WATCHED: 'watched',
+  UNWATCHED: 'unwatched',
+};

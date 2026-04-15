@@ -69,7 +69,7 @@ function createMovieCheckbox(film) {
   return { checkbox, checkboxId };
 }
 
-async function initAllFilms(filter = 'all') {
+async function initAllFilms(filter) {
   try {
     const ulMovieList = document.querySelector('.movie-list');
     ulMovieList.innerHTML = '';
